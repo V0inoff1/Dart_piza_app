@@ -31,7 +31,7 @@ class AuthScreen extends StatelessWidget {
                 SizedBox(height: 150,),
                 SizedBox(width: 110.02,height: 83.78,child: Placeholder (),),
                 SizedBox(height: 20,),
-                Text('Введите логин в виде 10 цифр номера телефона',
+                Text('Воинов Егор Введите логин в виде 10 цифр номера телефона',
                   style: TextStyle(fontSize:16,color: Color.fromRGBO(0, 0, 0, 0.6)),),
                 SizedBox(height: 20,),
                 TextField(
