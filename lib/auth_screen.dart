@@ -17,22 +17,28 @@ class AuthScreen extends StatelessWidget {
     const linkTextStyle = TextStyle(
         fontSize:16,
         //fontWeight: FontWeight.bold,
-        color: Color(0xFF0079D0)
+        color:Colors.white// Color(0xFF0079D0)
     );
 
     return MaterialApp(
       home: Scaffold(
           body: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/f1.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
             width: double.infinity,
             height: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 50),// симетричное расположение колонки при любой ореентации экрана
             child: SingleChildScrollView(
               child: Column(children:  [
                 SizedBox(height: 150,),
-                SizedBox(width: 110.02,height: 83.78,child: Placeholder (),),
+                const SizedBox(width: 110.02,height: 83.78,child: Image(image: AssetImage('assets/Pizza free vector icons designed by xnimrodx.png'),),),
                 SizedBox(height: 20,),
-                Text('Воинов Егор Введите логин в виде 10 цифр номера телефона',
-                  style: TextStyle(fontSize:16,color: Color.fromRGBO(0, 0, 0, 0.6)),),
+                Text('Наша пицца просто космос!\n            Заходи быстрее!',
+                  style: TextStyle(fontSize:16,color: Colors.white /*Color.fromRGBO(0, 0, 0, 0.6)*/),),
                 SizedBox(height: 20,),
                 TextField(
                   keyboardType: TextInputType.phone,
@@ -52,7 +58,7 @@ class AuthScreen extends StatelessWidget {
                     fillColor: Color(0xFFeceff1),
                     enabledBorder: borderStyle,
                     focusedBorder: borderStyle,
-                    labelText: 'Login',
+                    labelText: 'Пароль',
                   ),
                 ),
                 SizedBox(height: 28,),

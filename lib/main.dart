@@ -6,7 +6,7 @@ import 'expanted_demo_screen.dart';
 
 
 void main() {
-  runApp(const NavigationDrawerScreen());
+  runApp(const AuthScreen());
 }
 
 
