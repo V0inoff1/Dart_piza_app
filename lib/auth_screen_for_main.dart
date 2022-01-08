@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const AuthScreen());
-}
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen ({Key? key}) : super(key: key);
