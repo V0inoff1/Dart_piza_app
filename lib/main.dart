@@ -4,6 +4,8 @@ import 'package:sliding_switch/sliding_switch.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:intl/intl.dart';
 
+import 'Utils/them.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -331,6 +333,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
     /*final ButtonStyle buttonStyle=
     TextButton.styleFrom(primary: Theme.of(context).colorScheme.onPrimary);*/
     return MaterialApp(
+      theme: Them1(), //ТЕМА ПРИЛОЖЕНИЯ
       scaffoldMessengerKey: _messengerKey,
       home: Scaffold(
         appBar: AppBar(
@@ -355,7 +358,9 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                 ),
 
                 child: Container(
+                  //color: Theme.of(context).colorScheme.secondary,
                   height: 200,
+
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -365,7 +370,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.add_to_queue_sharp ),
-                title: const Text('Каталог'),
+                title: const Text('Каталог', ),
                 onTap: () {
                   _messengerKey.currentState!.showSnackBar(
                       const SnackBar(content: Text('Переход в каталог')));
@@ -405,7 +410,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
             ],
           ),
         ),
-        body: Container( // В теле прописывается код страницы каркуляции пицы
+        body: Container(// В теле прописывается код страницы каркуляции пицы
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/Calc_pizza_Image.jpg"),
@@ -416,16 +421,19 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+
                 const SizedBox(
                   height: 0,
                 ),
                 SizedBox(
+
                   height: 100,
+
                   //child: Image.asset(name),
                 ),
 
                 const Text('Создай свой вкус',
-                  style: TextStyle(fontSize:36,color: Colors.white ),),
+                  style:  TextStyle(fontSize:36,color: Colors.white )),
                 const Text('Выбери вкустности',
                   style: TextStyle(fontSize:16,color: Colors.white ),),
                 const SizedBox(
@@ -433,6 +441,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                 ),
                 SizedBox (
                   width: 300,
+
                   child: SlidingSwitch(
                     value: false,
                     width: 300,
@@ -591,6 +600,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
 
                 // Итоговая стоимость
                 Container(
+                  //color: Theme.of(context).colorScheme.secondary,
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(top: 10, left: 20),
                   child: Text('Стоимость: ',

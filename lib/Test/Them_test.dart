@@ -1,20 +1,26 @@
+import 'package:auth_page/Utils/strings.dart';
+import 'package:auth_page/Utils/them.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 void main() {
   runApp( const ThemDemoscreen ());
 
 }
-
 class ThemDemoscreen extends StatelessWidget {
   const ThemDemoscreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Them1(),
       home: DemoThemScren(),
     );
   }
 }
+
+
+
+
 
 class DemoThemScren extends StatefulWidget {
   const DemoThemScren({Key? key}) : super(key: key);
@@ -88,6 +94,11 @@ class _DemoThemScrenState extends State<DemoThemScren> {
           tooltip: 'Уведомления',
           onPressed: () {},
       ),
+      IconButton(
+        icon: const Icon(Icons.settings),
+        tooltip: 'Уведомления',
+        onPressed: () {},
+      ),
     ],
   );
 
@@ -103,7 +114,7 @@ class _DemoThemScrenState extends State<DemoThemScren> {
               Text('Загаловок', style:  Theme.of(context).textTheme.headline5),
               Container(
                 height: 100,
-                color: Theme.of(context).colorScheme.secondary,
+               color: Theme.of(context).colorScheme.secondary,
               ),
               Row (
                 children: const [
@@ -118,7 +129,7 @@ class _DemoThemScrenState extends State<DemoThemScren> {
                 ],
               ),
               ElevatedButton(onPressed: () {}, child: Text ('Войти')),
-              //Text(Strings.longBodyText),
+              Text(Strings.longBodyText),
               Slider(
                   value:_currentSliderValue,
                   max: 100,
@@ -128,13 +139,42 @@ class _DemoThemScrenState extends State<DemoThemScren> {
                     setState(() {
                       _currentSliderValue=value;
                     });
-                  })
+                  }
+                  ),
+              SwitchListTile(
+                title: Text('Темная тема'),
+                  value: _isDarkTheme,
+                  onChanged: (val) {
+                    setState(() {
+                      _isDarkTheme = !_isDarkTheme;
+                      if (_isDarkTheme) {
+                        globalTheme();  Them1();
+                      }
+                    });
+                  }) ,
             ],
+
           ) ,
         ),
+      ),
+      // нижний апп бар
+      floatingActionButton: FloatingActionButton(
+        onPressed: () { },
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomNavigationBar (
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: 'Профиль'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: 'Баланс'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: 'Настройки'),
+        ],
       ),
     );
   }
 }
+
 
 
