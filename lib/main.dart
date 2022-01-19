@@ -19,6 +19,8 @@ void main() {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/second': (context) => const Loginscreen(),
         '//second': (context) => const PizzaCalcScreen(),
+        '///second': (context) => const ListViewScreen(),
+        '////second': (context) => const listApp(),
 
       },
     ),
@@ -84,7 +86,7 @@ class AuthScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 28,),
                 SizedBox(width: 154, height: 42,child:
-                ElevatedButton(onPressed: () {
+                     ElevatedButton(onPressed: () {
                   Navigator.pushNamed(context, '//second');
                 },
                   child: Text('Войти'),
@@ -292,41 +294,42 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
   bool _addCheese = true;
   bool _addgarlic = false;
 
-  int _calcCoast (){
-    _coast = _pizzaSize.round()+100;
+  //
 
-    if (_isSlimDoufht == true) _coast += 30;
-    if (_addCheese == true) _coast+= 50;
-    if (_addgarlic == true ) _coast+= 70;
+   int  _calcCoast() {
+      _coast = _pizzaSize.round() + 100;
 
-    switch (_sauce){
-      case Sauce.hot:
-        _coast+=10;
-        break;
-      case Sauce.sweet:
-        _coast+=20;
-        break;
-      case Sauce.cheese:
-        _coast+=40;
-        break;
-      case Sauce.garlic:
-        _coast+=60;
-        break;
+      if (_isSlimDoufht == true) _coast += 30;
+      if (_addCheese == true) _coast += 50;
+      if (_addgarlic == true) _coast += 70;
 
-      case null :
-        _sauce = Sauce.hot;
-        break;
+      switch (_sauce) {
+        case Sauce.hot:
+          _coast += 10;
+          break;
+        case Sauce.sweet:
+          _coast += 20;
+          break;
+        case Sauce.cheese:
+          _coast += 40;
+          break;
+        case Sauce.garlic:
+          _coast += 60;
+          break;
 
-
+        case null :
+          _sauce = Sauce.hot;
+          break;
+      }
+      return _coast;
     }
-    return _coast;
-  }
 
-  void _onSauceChanged ( Sauce? value){
-    setState(() {
-      _sauce = value;
-    });
-  }
+    void _onSauceChanged(Sauce? value) {
+      setState(() {
+        _sauce = value;
+      });
+    }
+
 
   @override
   Widget build(BuildContext context) {
@@ -384,15 +387,21 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                       const SnackBar(content: Text('Переход в корзину')));
                 },
               ),
-              /*
               ListTile(
-                leading: const Icon(Icons.manage_search),
-                title: const Text('Поиск'),
-                onTap: () {
-                  _messengerKey.currentState!.showSnackBar(
-                      const SnackBar(content: Text('Переход в корзину')));
+                leading: const Icon(Icons.map),
+                title: const Text('Наша география'),
+                onTap: () {Navigator.pushNamed(context, '///second');
+
                 },
-              ),*/
+              ),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text('Мастера CosmoPizza'),
+                onTap: () { Navigator.pushNamed(context, '////second');
+
+                },
+              ),
+
               const Divider(),
               const Padding(
                 padding: EdgeInsets.only(left: 10.0),
@@ -402,11 +411,11 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                 leading: const Icon(Icons.person_pin_outlined),
                 title: const Text('Моя CosmoPizza'),
                 onTap: () {
-                 /* _messengerKey.currentState!.showSnackBar(
-                      const SnackBar(content: Text('Переход в настройки')));
-                  */
+
                 },
               ),
+
+
             ],
           ),
         ),
@@ -622,6 +631,47 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                         textAlign: TextAlign.center
                     ),
                   ),
+
+                ),
+                SizedBox(width: 154, height: 42,child:
+                ElevatedButton(onPressed: () =>
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        backgroundColor: Colors.orange,
+                        title: const Text('Подтвердите заказ ?'),
+                        //content: _calcCoast (),
+                        actions: <Widget>[
+                          TextButton(
+                            style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                            ),
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: const Text('Отменить'),
+                          ),
+                          TextButton(
+                            style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                            ),
+                            onPressed: () => {
+                              Navigator.pop(context, 'OK'),
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Ваш заказ оформлен. Спасибо за заказ!')))
+                            },
+                            child: const Text('Заказать'),
+                          ),
+                        ],
+                      ),
+                    ),
+                /*{Navigator.pushNamed(context, '//second');},*/
+                  child: Text('Сделать заказ'),
+                  style: ElevatedButton.styleFrom(
+                    primary:   Colors.orangeAccent,
+                    shape: RoundedRectangleBorder(   //тип кнопки - скругленный прямоугольник
+                      borderRadius: BorderRadius.circular(36.0), // радиус скругления
+                    ),
+                  ),
+                ),
                 ),
 
                 const SizedBox(
@@ -641,6 +691,128 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
   }
 }
 
+
+
+class User{
+  String name;
+  String Phone;
+  User(this.name, this.Phone);
+}
+const List <String> users = <String>["Ул.Лениена 22", "Ул. Победы 32 ", "Ул. Победы 102", "Ул. Октября 15", "Ул. Ворошилова 32"];
+const List <String> companies = <String>["1-111-111", "2-222-222", "3-333-333", "4-444-444", "5-555-555"];
+
+class ListViewScreen extends StatelessWidget {
+  const ListViewScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text ('CosmoPizza'),
+          actions: <Widget>[
+            IconButton(
+                tooltip: 'На главную',// всплывающая подсказка
+                onPressed: () {Navigator.pushNamed(context, '//second');},
+                icon: Icon(Icons.arrow_back)),
+          ],
+        ),
+        body:  Container(
+
+          child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              padding: const EdgeInsets.all(8),
+              itemCount: users.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Column(
+
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Адрес : ${users[index]}", style: Theme.of(context).textTheme.headline5, ),
+                        Text("Телефон для связи: ${companies[index]}", style: Theme.of(context).textTheme.headline5, )
+                      ],
+
+                    )
+                );
+
+              }
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class listApp extends StatelessWidget {
+  const listApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold (
+
+        appBar: AppBar(
+          title: const Text ('Список шеф-мастеров '),
+          actions: <Widget>[
+            IconButton(
+                tooltip: 'На главную',// всплывающая подсказка
+                onPressed: () { Navigator.pushNamed(context, '//second');},
+                icon: Icon(Icons.arrow_back)),
+          ],
+        ),
+        body: List2(
+
+        ),
+      ),
+    );
+  }
+}
+
+class List2 extends StatefulWidget {
+  const List2({Key? key}) : super(key: key);
+
+  @override
+  _List2State createState() => _List2State();
+}
+
+class _List2State extends State<List2> {
+
+  int _selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Container(
+
+      decoration: BoxDecoration(
+        color: Colors.orangeAccent,
+
+      ),
+
+      child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: 20,
+          padding: EdgeInsets.symmetric(),
+          itemBuilder: (BuildContext context, int index){
+
+
+            return ListTile( // название виджета
+              title: Text(' Шеф-мастер $index'),
+              selected: index == _selectedIndex, // выделяет выбранный эллемент
+              onTap: (){ // при нажатии
+                setState(() { // происходит установка состояния
+                  _selectedIndex = index;
+                });
+              },
+            );
+          }
+
+      ),
+    );
+  }
+}
 
 
 
