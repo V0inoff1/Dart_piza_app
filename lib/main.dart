@@ -736,7 +736,6 @@ class ListViewScreen extends StatelessWidget {
 
                     )
                 );
-
               }
           ),
         ),
