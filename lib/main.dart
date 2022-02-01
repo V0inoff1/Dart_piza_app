@@ -30,6 +30,8 @@ void main() {
 class AuthScreen extends StatelessWidget {
   const AuthScreen ({Key? key}) : super(key: key);
 
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -63,15 +65,18 @@ class AuthScreen extends StatelessWidget {
                 Text('Наша пицца просто космос!\n            Заходи быстрее!',
                   style: TextStyle(fontSize:16,color: Colors.white /*Color.fromRGBO(0, 0, 0, 0.6)*/),),
                 SizedBox(height: 20,),
-                TextField(
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFeceff1),
-                    enabledBorder: borderStyle,
-                    focusedBorder: borderStyle,
-                    labelText: 'Телефон',
+                Container(
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFeceff1),
+                      enabledBorder: borderStyle,
+                      focusedBorder: borderStyle,
+                      labelText: 'Телефон',
+                    ),
                   ),
+
                 ),
                 SizedBox(height: 20,),
                 TextField(
@@ -87,6 +92,7 @@ class AuthScreen extends StatelessWidget {
                 SizedBox(height: 28,),
                 SizedBox(width: 154, height: 42,child:
                      ElevatedButton(onPressed: () {
+
                   Navigator.pushNamed(context, '//second');
                 },
                   child: Text('Войти'),
@@ -743,7 +749,7 @@ class ListViewScreen extends StatelessWidget {
     );
   }
 }
-
+//////
 class listApp extends StatelessWidget {
   const listApp({Key? key}) : super(key: key);
 
